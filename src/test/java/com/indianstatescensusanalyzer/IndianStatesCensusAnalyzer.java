@@ -4,8 +4,11 @@ import com.opencsv.*;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class IndianStatesCensusAnalyzer {
-    public static void main(String[] args) {
+import java.io.FileReader;
+import com.opencsv.CSVReader;
+
+public class IndianStatesCensusAnalyzer{
+    public static void main(String[] args) throws Exception{
         System.out.println("Welcome to Indian States Census Analyzer");
         String csvFile = "CensusAnalyser.csv";
         CSVReader csvReader = null;
@@ -17,6 +20,19 @@ public class IndianStatesCensusAnalyzer {
             }
         } catch (IOException e) {
             System.out.println(e);
+        }
+
+        //Ability for the analyser to load the data from CDV File using Iterator.
+        //Instantiating the CSVReader class
+        CSVReader reader = new CSVReader(new FileReader("C://CensusAnalyser.csv"));
+        //Reading the contents of the csv file
+        StringBuffer buffer = new StringBuffer();
+        String line[];
+        while ((line = reader.readNext()) != null) {
+            for(int i = 0; i<line.length; i++) {
+                System.out.print(line[i]+" ");
+            }
+            System.out.println(" ");
         }
     }
 }
